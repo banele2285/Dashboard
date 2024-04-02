@@ -1,0 +1,81 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+<link rel="stylesheet" href="style.css">
+<script>
+function validateForm() {
+    var name = document.getElementById("name").value;
+    var password = document.getElementById("password").value;
+    var email = document.getElementById("email").value;
+    var date = document.getElementById("date").value;
+    var mobile = document.getElementById("mobile").value;
+    var username = document.getElementById("username").value;
+
+    // Validate Name
+    if (name === "") {
+        alert("Please enter your name.");
+        return false;
+    }
+
+    // Validate Password
+    var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
+    if (!strongRegex.test(password)) {
+        alert("Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters.");
+        return false;
+    }
+
+    // Validate Email
+    var emailRegex = /^\S+@\S+\.\S+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    // Validate Date (Optional)
+
+    // Validate Mobile Number (Optional)
+
+    // Limit Username Character Length
+    if (username.length > 20) {
+        alert("Username cannot exceed 20 characters.");
+        return false;
+    }
+
+    // Privacy Protection - Clear sensitive fields
+    document.getElementById("password").value = "";
+    document.getElementById("mobile").value = "";
+
+    // Submit the form if all validations pass
+    alert("Registration successful!");
+    return true;
+}
+</script>
+</head>
+<body>
+<form onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date"><br>
+
+    <label for="mobile">Mobile Number:</label>
+    <input type="tel" id="mobile" name="mobile"><br>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>
+
